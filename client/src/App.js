@@ -17,6 +17,19 @@ const loginUser = (user) => {
   setUser(user)
 }
 
+useEffect( () => {
+  fetch('/me')
+  .then(r => {
+    if (r.ok){
+      r.json()
+      .then(u => {
+        setLoggedIn(true)
+        setUser(u)
+      })
+    }
+  })
+}, [])
+
   return (
     <div className="App">
       <Navbar user={user} loggedIn={loggedIn}/>
