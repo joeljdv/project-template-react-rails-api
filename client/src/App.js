@@ -11,12 +11,6 @@ function App() {
 const [loggedIn, setLoggedIn] = useState(false)
 const [user, setUser] = useState({})
 
-
-const loginUser = (user) => {
-  setLoggedIn(true)
-  setUser(user)
-}
-
 useEffect( () => {
   fetch('/me')
   .then(r => {
@@ -30,9 +24,25 @@ useEffect( () => {
   })
 }, [])
 
+const loginUser = (user) => {
+  setLoggedIn(true)
+  setUser(user)
+}
+
+const logoutUser = () => {
+  fetch('/logout', {
+    method:'DELETE'
+  })
+  .then(() => {
+    console.log("Logged out")
+    setLoggedIn(false)
+    setUser({})
+  })
+}
+
   return (
     <div className="App">
-      <Navbar user={user} loggedIn={loggedIn}/>
+      <Navbar user={user} loggedIn={loggedIn} logoutUser={logoutUser}/>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/signup" render={routerProps => <Signup {...routerProps} loginUser={loginUser} loggedIn={loggedIn}/>} />

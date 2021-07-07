@@ -28,7 +28,6 @@ const Signup = (props) => {
     if(props.loggedIn){
         return (
             <div>   
-
             </div>
         )
     }else {
