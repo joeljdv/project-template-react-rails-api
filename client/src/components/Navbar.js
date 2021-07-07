@@ -6,9 +6,13 @@ const Navbar = (props) => {
 
     if (props.loggedIn) {
         return (
-            <Link>
-                <button>Signup</button>
-            </Link>
+            <div>
+                <h1>Hello {props.user.username}</h1>
+                <Link to="/logout">
+                    <button>Logout</button>
+                </Link> 
+            </div>
+            
         )
     }else {
         return (

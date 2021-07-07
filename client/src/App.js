@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom'
@@ -10,14 +9,20 @@ import Signup from './containers/Signup';
 function App() {
 
 const [loggedIn, setLoggedIn] = useState(false)
-const [User, setUser] = useState({})
-// const history = useHistory()
+const [user, setUser] = useState({})
+
+
+const loginUser = (user) => {
+  setLoggedIn(true)
+  setUser(user)
+}
+
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar user={user} loggedIn={loggedIn}/>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/signup" render={routerProps => <Signup {...routerProps} onSignup={signupUser} />} />
+        <Route exact path="/signup" render={routerProps => <Signup {...routerProps} loginUser={loginUser} loggedIn={loggedIn}/>} />
       </Switch>
     </div>
   );
