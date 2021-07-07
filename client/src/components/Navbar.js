@@ -1,6 +1,8 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
- const Navbar = (props) => {
+ 
+
+const Navbar = (props) => {
 
     if (props.loggedIn) {
         return (
