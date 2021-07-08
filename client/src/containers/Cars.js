@@ -6,6 +6,7 @@ import CarLink from '../components/CarLink'
 const Cars = () => {
     const [cars, setCars] = useState([])
     const [error, setError] = useState("")
+    const [carErrors, setCarErrors] = useState([])
     const [formFlag, setFormFlag] = useState(false)
 
     useEffect( () => {
@@ -33,14 +34,23 @@ const Cars = () => {
             },
             body: JSON.stringify(car)
         })
-        .then(r => r.json)
+        .then(r => r.json())
         .then(data => {
-            setCars([...cars, data])
-            setFormFlag(false)
+            if(data.errors){
+                console.log(data.errors)
+                setCarErrors(data.errors)
+            }else {
+               console.log(data)
+                setCars([...cars, data])
+                setFormFlag(false) 
+                setCarErrors([])
+            }          
         })
     }
 
     const carsList = cars.map(c => <CarLink key={c.id} car={c}/>)
+
+    const errorList = carErrors.map(e => <div><li>{e}</li><br/></div>)
 
     if (error === '') {
         return (
@@ -51,6 +61,7 @@ const Cars = () => {
                         <CarsForm addCar={addCar}/> :
                         <button onClick={() => {setFormFlag(true)}}>Add car</button>
                     }
+                    {errorList}
                 </ul>
             </div>
         )

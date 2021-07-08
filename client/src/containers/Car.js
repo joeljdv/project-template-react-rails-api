@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
 
 
 const Car = (props) => {
@@ -20,13 +21,22 @@ const Car = (props) => {
         })
     }, [] )
 
+    const deleteCar = () => {
+        fetch(`/cars/${props.match.params.id}`, {
+            method: "DELETE"
+        })
+    }
+
     if(error === '') {
         return (
             <div>
-                <img src={car.image} class='car_img'/>
+                <img src={car.image} className='car_img'/>
                 <h2>{car.name}</h2>
                 <p><strong>Make:</strong> {car.make}</p>
                 <p><strong>Year:</strong> {car.year}</p>
+                <Link to='/cars'>
+                    <button onClick={deleteCar}>Delete car</button>
+                </Link>
             </div>
         )
     } else {
