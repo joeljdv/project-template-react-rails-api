@@ -16,7 +16,7 @@ const Cars = () => {
                 if(data.error){
                     setError(data.error)
                 } else {
-                    setCars(cars)
+                    setCars(data)
                 }
             }else {
                 setError("Not Authorized")
@@ -39,7 +39,7 @@ const Cars = () => {
         })
     }
 
-    const carsList = cars.map(car => <div><li key={car.id}>{car.name}</li><br/></div>)
+    const carsList = cars.map(car => <li key={car} >{car.year} {car.name}</li>)
 
     if (error === '') {
         return (
