@@ -39,7 +39,7 @@ const Cars = () => {
         })
     }
 
-    const carsList = cars.map(car => <li key={car} >{car.year} {car.name}</li>)
+    const carsList = cars.map(car => <li key={car.id} >{car.year} {car.name}</li>)
 
     if (error === '') {
         return (
@@ -57,7 +57,7 @@ const Cars = () => {
         return (
             <div>   
                 <h3>Not authorized</h3>
-                <h2>Sign up or Login</h2>   
+                <h2> Please Sign up or Login</h2>   
              </div>
         )
     }
