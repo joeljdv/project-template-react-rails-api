@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import CarsForm from './CarsForm'
+import CarLink from '../components/CarLink'
 
 
 const Cars = () => {
@@ -39,7 +40,7 @@ const Cars = () => {
         })
     }
 
-    const carsList = cars.map(car => <li key={car.id} >{car.year} {car.name}</li>)
+    const carsList = cars.map(c => <CarLink car={c}/>)
 
     if (error === '') {
         return (

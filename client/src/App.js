@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Signup from './containers/Signup';
 import Login from './containers/Login';
 import Cars from './containers/Cars'
+import Car from './components/Car'
 
 
 function App() {
@@ -50,6 +51,7 @@ const logoutUser = () => {
         <Route exact path="/signup" render={routerProps => <Signup {...routerProps} loginUser={loginUser} loggedIn={loggedIn}/>} />
         <Route exact path="/login" render={routerProps => <Login {...routerProps} loginUser={loginUser} loggedIn={loggedIn}/>} />
         <Route exact path='/cars' component={Cars} />
+        <Route exact path='/cars/:id' component={Car} />
       </Switch>
     </div>
   );
