@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.car_img {
+  width: 600px ;
+  border-radius: 10px;
+  border-style: double;
+  border-color: #61dafb;
+  border-width: 10px;
+}
