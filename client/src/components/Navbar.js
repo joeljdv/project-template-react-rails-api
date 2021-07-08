@@ -9,7 +9,10 @@ const Navbar = (props) => {
             <div>
                 <h1>Hello {props.user.username}</h1>
                 <br/>
-                    <button onClick={props.logoutUser}>Logout</button>
+                <button onClick={props.logoutUser}>Logout</button>
+                <Link to='/cars'>
+                    <button>Cars</button>
+                </Link>
             </div>
             
         )

@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Signup from './containers/Signup';
 import Login from './containers/Login';
+import Cars from './containers/Cars'
 
 
 function App() {
@@ -48,6 +49,7 @@ const logoutUser = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/signup" render={routerProps => <Signup {...routerProps} loginUser={loginUser} loggedIn={loggedIn}/>} />
         <Route exact path="/login" render={routerProps => <Login {...routerProps} loginUser={loginUser} loggedIn={loggedIn}/>} />
+        <Route exact path='/cars' component={Cars} />
       </Switch>
     </div>
   );
