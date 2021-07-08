@@ -62,7 +62,7 @@ const Login= (props) => {
                     <br/>
                     <input type="submit"/>
                 </form>
-                {error ? <div>{error}</div> : null}
+                {error ? <div>{error} -- Please try again</div> : null}
             </div> 
         )   
     }

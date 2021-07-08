@@ -13,6 +13,12 @@ class CarsController < ApplicationController
         render json: cars, status: :created
     end
 
+    def show
+        user = User.find_by(id: session[:user_id])
+        car = user.cars.find_by(id: params[:id])
+        render json: car
+    end
+
     private
 
     def cars_params
