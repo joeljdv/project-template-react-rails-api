@@ -10,7 +10,11 @@ class CarsController < ApplicationController
     def create
         user = User.find_by(id: session[:user_id])
         cars = user.cars.create(cars_params)
-        render json: cars, status: :created
+        if car.valid?
+            render json: cars, status: :created
+        else 
+            render json: {errors: car.errors.full_messages},  status: :unprocessable_entity
+        end
     end
 
     def show
