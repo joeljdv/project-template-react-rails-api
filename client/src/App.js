@@ -6,7 +6,7 @@ import Home from './components/Home'
 import Signup from './containers/Signup';
 import Login from './containers/Login';
 import Cars from './containers/Cars'
-import Car from './components/Car'
+import Car from './containers/Car'
 
 
 function App() {

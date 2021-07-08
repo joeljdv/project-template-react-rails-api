@@ -40,7 +40,7 @@ const Cars = () => {
         })
     }
 
-    const carsList = cars.map(c => <CarLink car={c}/>)
+    const carsList = cars.map(c => <CarLink key={c.id} car={c}/>)
 
     if (error === '') {
         return (
