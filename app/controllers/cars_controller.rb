@@ -16,7 +16,21 @@ class CarsController < ApplicationController
     def show
         user = User.find_by(id: session[:user_id])
         car = user.cars.find_by(id: params[:id])
-        render json: car
+        if car
+            render json: car
+        else
+            render json: {error: "Not authorized"}, status: :unauthorized
+        end
+    end
+
+    def update
+
+    end
+
+    def destroy
+        user = User.find_by(id: session[:user_id])
+        car = user.cars.find_by(id: params[:id])
+
     end
 
     private

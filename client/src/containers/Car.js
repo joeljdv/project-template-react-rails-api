@@ -10,18 +10,31 @@ const Car = (props) => {
     fetch(`/cars/${props.match.params.id}`)
     .then(r => r.json())
     .then(data => {
-        console.log(data)
-        setCar(data)
+        if(data.error){
+            console.log(data.error)
+            setError(data.error)
+        }else {
+            console.log(data)
+            setCar(data)
+        }
         })
     }, [] )
 
-    return (
-        <div>
-            <img src={car.image} class='car_img'/>
-            <h2>{car.name}</h2>
-            <p><strong>Make:</strong> {car.make}</p>
-            <p><strong>Year:</strong> {car.year}</p>
-        </div>
+    if(error === '') {
+        return (
+            <div>
+                <img src={car.image} class='car_img'/>
+                <h2>{car.name}</h2>
+                <p><strong>Make:</strong> {car.make}</p>
+                <p><strong>Year:</strong> {car.year}</p>
+            </div>
         )
+    } else {
+        return(
+           <h3>{error}</h3> 
+        )   
+    }
+
+   
 }
 export default Car
