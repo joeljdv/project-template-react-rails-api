@@ -28,7 +28,14 @@ class CarsController < ApplicationController
     end
 
     def update
-
+        user = User.find_by(id: session[:user_id])
+        car = user.cars.find_by(id: params[:id])
+        if car
+            car.update(cars_params)
+            render json: car
+        else
+            render json: {error: "Car not found"}, status: :not_found
+        end
     end
 
     def destroy
