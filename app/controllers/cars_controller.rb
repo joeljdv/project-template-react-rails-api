@@ -13,7 +13,7 @@ class CarsController < ApplicationController
         if car.valid?
             render json: car, status: :created
         else 
-            render json: {errors: car.errors.full_messages},  status: :unprocessable_entity
+            render json: {errors: car.errors.full_messages}, status: :unprocessable_entity
         end
     end
 
@@ -35,7 +35,7 @@ class CarsController < ApplicationController
             render json: car
         else
             render json: {error: "Car not found"}, status: :not_found
-        end
+        end 
     end
 
     def destroy

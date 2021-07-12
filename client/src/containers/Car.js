@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
+import EditCarForm from './EditCarForm'
 
 
 const Car = (props) => {
 
     const [car, setCar] = useState({})
     const [error, setError] = useState("")
+    const [editForm, setEditForm] = useState(false)
 
     useEffect( () => {
     fetch(`/cars/${props.match.params.id}`)
@@ -27,6 +29,23 @@ const Car = (props) => {
         })
     }
 
+    const editCar = (c) => {
+        fetch(`/cars/${props.match.params.id}`, {
+            method: 'PATCH',
+            body: JSON.stringify(c),
+            headers: {
+                "Content-Type":"application/json"
+            }
+        })
+        .then(r => r.json())
+        .then(data => {
+            console.log(data)
+            setEditForm(false)
+            setCar(data)
+        })
+    }
+
+
     if(error === '') {
         return (
             <div>
@@ -37,6 +56,9 @@ const Car = (props) => {
                 <Link to='/cars'>
                     <button onClick={deleteCar}>Delete car</button>
                 </Link>
+                {editForm ? <EditCarForm car={car} editCar={editCar}/> :
+                    <button onClick={() => setEditForm(true)}>Edit car</button>
+                }
             </div>
         )
     } else {
